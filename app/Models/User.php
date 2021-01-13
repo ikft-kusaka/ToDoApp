@@ -40,4 +40,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function folders()
+    {
+        // userテーブルとfolderテーブルの依存関係を取得
+        return $this->hasMany('App\Models\Folder');
+    }
 }
