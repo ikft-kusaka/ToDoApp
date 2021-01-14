@@ -7,13 +7,14 @@ use App\Http\Requests\EditTask;
 use App\Models\Folder;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
     public function index(int $id)
     {
         // 全てのフォルダを取得
-        $folders = Folder::all();
+        $folders = Auth::user()->folders()->get();
 
         // 選ばれたフォルダを取得する find()プライマリキーのカラムを条件に1行分のデータを取得する
         $current_folder = Folder::find($id);
